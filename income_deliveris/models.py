@@ -32,7 +32,7 @@ class incDelivery(models.Model):
     order_recieve_date = models.DateTimeField('date_published', auto_now=True)
     order_recieve_fiverr_account = models.CharField(max_length=20,blank=False)
     order_amount = models.FloatField(null=True, blank=True, default=0.0)
-    order_amount_minus_percentage = models.FloatField(null=True, blank=True, default=0.0)
+    order_amount_minus_percentage = models.FloatField(null=True, blank=True, default=20.00)
     order_charges_for_fiverr = models.FloatField(null=True, blank=True, default=0.0)
     client_fiverr_id = models.CharField(max_length=50, blank=False)
     client_name = models.CharField(max_length=20)
