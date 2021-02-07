@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  scroll-padding-right: auto;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  font-size: 11px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<table>
+<tr>
+    <th><p>Income By</p></th>
+    <th>Order Date</th>
+    <th>Fiverr Account</th>
+    <th>Order Amount</th>
+    <th>Percentage</th>
+    <th>Fiverr Charge</th>
+    <th>Client's Fiverr Id</th>
+    <th>Client Name</th>
+    <th>Client Email</th>
+    <th>Order Page Url</th>
+    <th>Remarks</th>
+    <th>Team/Leader Name</th>
+    <th>Order Status</th>
+    <th>Delivery By</th>
+    <th>Delivery Date</th>
+    <th>Delivery Amount</th>
+  </tr>
+{% for row in data %}
+  <tr>
+    <td>{{row.incomingBy}}</td>
+    <td>{{row.date}}</td>
+    <td>{{row.accountFiverr}}</td>
+    <td>{{row.amount}}</td>
+    <td>{{row.percentage}}</td>
+    <td>{{row.chargesFiverr}}</td>
+    <td>{{row.fiverrId}}</td>
+    <td>{{row.clientName}}</td>
+    <td>{{row.emailAddress}}</td>
+    <td>{{row.orderPageURL}}</td>
+    <td>{{row.remarks}}</td>
+    <td>{{row.allocationTeamName}}</td>
+    <td>{{row.orderStatus}}</td>
+    <td>{{row.deliveredBy}}</td>
+    <td>{{row.deliveredDate}}</td>
+    <td>{{row.deliveredAmount}}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+
+{% for fields in form %}
+{{fields}}
+{% endfor %}
+</body>
+</html>
