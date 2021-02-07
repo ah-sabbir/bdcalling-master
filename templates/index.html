@@ -32,6 +32,7 @@ tr:nth-child(even) {
     <th>Percentage</th>
     <th>Fiverr Charge</th>
     <th>Client's Fiverr Id</th>
+    <th>Client Fiverr Profile</th>
     <th>Client Name</th>
     <th>Client Email</th>
     <th>Order Page Url</th>
@@ -44,32 +45,37 @@ tr:nth-child(even) {
   </tr>
 {% for row in data %}
   <tr>
-    <td>{{row.incomingBy}}</td>
-    <td>{{row.date}}</td>
-    <td>{{row.accountFiverr}}</td>
-    <td>{{row.amount}}</td>
-    <td>{{row.percentage}}</td>
-    <td>{{row.chargesFiverr}}</td>
-    <td>{{row.fiverrId}}</td>
-    <td>{{row.clientName}}</td>
-    <td>{{row.emailAddress}}</td>
-    <td>{{row.orderPageURL}}</td>
-    <td>{{row.remarks}}</td>
-    <td>{{row.allocationTeamName}}</td>
-    <td>{{row.orderStatus}}</td>
-    <td>{{row.deliveredBy}}</td>
-    <td>{{row.deliveredDate}}</td>
-    <td>{{row.deliveredAmount}}</td>
+    <td>{{row.order_recieve_person}}</td>
+    <td>{{row.order_recieve_date}}</td>
+    <td>{{row.order_recieve_fiverr_account}}</td>
+    <td>{{row.order_amount}}</td>
+    <td>{{row.order_amount_minus_percentage}}</td>
+    <td>{{row.order_charges_for_fiverr}}</td>
+    <td>{{row.client_fiverr_id}}</td>
+    <td>{{row.client_fiverr_profile}}</td>
+    <td>{{row.client_name}}</td>
+    <td>{{row.client_email_address}}</td>
+    <td>{{row.order_page_url}}</td>
+    <td>{{row.order_spreadsheet_url}}</td>
+    <td>{{row.order_remarks}}</td>
+    <td>{{row.order_working_team_or_person_name}}</td>
+    <td>{{row.order_status}}</td>
+    <td>{{row.order_delivery_person}}</td>
+    <td>{{row.order_delivery_date}}</td>
+    <td>{{row.order_delivery_amount}}</td>
   </tr>
   {% endfor %}
 </table>
 
-<form method='post'>
-{% comment %} {% for fields in form %}
-{{fields}}
-{% endfor %} {% endcomment %}
-{{form.as_p}}
-<button type="submit" class="save btn btn-default">submit</button>
+<form method="post">
+ {% csrf_token %}
+    {% for field in form %}
+        <div class="fieldWrapper">
+            {{ field.errors }}
+            {{ field.label_tag }} {{ field }}
+        </div>
+    {% endfor %}
+    <p><input type="submit" value="Send message" /></p>
 </form>
 </body>
 </html>

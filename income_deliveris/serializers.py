@@ -9,16 +9,16 @@ class incommingSerializer(serializers.ModelSerializer):
 
 
 class entryForm(forms.ModelForm):
+
     class Meta:
         model = incDelivery
         fields = [
             'order_recieve_person',
+            'marketplacename',
             'order_recieve_fiverr_account',
             'order_amount',
             'order_amount_minus_percentage',
-            'order_charges_for_fiverr',
             'client_fiverr_id',
-            'client_name',
             'client_email_address',
             'order_page_url',
             'order_spreadsheet_url',
@@ -27,7 +27,6 @@ class entryForm(forms.ModelForm):
             'order_status',
             'order_delivery_person',
             'order_delivery_date',
-            'order_delivery_amount',
         ]
         # widgets = {
         #     'accountFiverr': forms.TextInput(attrs={
@@ -66,13 +65,12 @@ class entryForm(forms.ModelForm):
         #     }),
         # }
         labels = {
-            'order_recieve_person': "who recieve the order ? ",
-            'order_recieve_fiverr_account': "Fiverr Account ",
-            'order_amount': "Order's Total Amount",
-            'order_amount_minus_percentage': "Percentage",
-            'order_charges_for_fiverr': "Fiverr Charge",
-            'client_fiverr_id': "Client's Fiverr Id",
-            'client_name': "Client Name",
+            'order_recieve_person': "Recieve ",
+            'marketplacename': "Marketplace Name",
+            'order_recieve_fiverr_account': "Account Name ",
+            'order_amount': "Total Amount",
+            'order_amount_minus_percentage': "Percentage (%)",
+            'client_fiverr_id': "Client's Id",
             'client_email_address': "Client Email",
             'order_page_url': "Order Page's Url",
             'order_spreadsheet_url': "Spread Sheet Url",
@@ -81,8 +79,15 @@ class entryForm(forms.ModelForm):
             'order_status': "Order Status",
             'order_delivery_person': "Who delivery the order ?",
             'order_delivery_date': "Delivery Date",
-            'order_delivery_amount': "Delivery Amount"
         }
+    
+        # def __init__(self, *args, **kwargs):
+        #     super().__init__(*args, **kwargs)
+        #     self.instance.total_amount = self.total_amount  # assigns the status to the instance
+        #     self.instance.marketplacecharge = self.marketplacecharge
+
+        # def save(self,commit=True):
+        #     instance = super()
             # 'percentage': forms.
             # 'chargesFiverr': forms.
             # 'fiverrId': forms.

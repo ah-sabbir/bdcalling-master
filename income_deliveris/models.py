@@ -30,15 +30,16 @@ class incDelivery(models.Model):
         default= "",
     )
     order_recieve_date = models.DateTimeField('date_published', auto_now=True)
+    marketplacename = models.CharField(max_length=100,blank=False)
     order_recieve_fiverr_account = models.CharField(max_length=20,blank=False)
-    order_amount = models.FloatField(null=True, blank=True, default=0.0)
+    order_amount = models.FloatField(null=True, blank=False, default=0.0)
     order_amount_minus_percentage = models.FloatField(null=True, blank=True, default=20.00)
     order_charges_for_fiverr = models.FloatField(null=True, blank=True, default=0.0)
     client_fiverr_id = models.CharField(max_length=50, blank=False)
-    client_name = models.CharField(max_length=20)
-    client_email_address = models.EmailField()
+    client_fiverr_profile = models.CharField(max_length=200,blank=False)
+    client_email_address = models.EmailField(blank = True)
     order_page_url = models.URLField(blank=False)
-    order_spreadsheet_url = models.URLField(blank=False)
+    order_spreadsheet_url = models.URLField(blank=True)
     order_remarks = models.CharField(max_length=50,blank=True)
     order_working_team_or_person_name = models.CharField(max_length=50,blank=True)
     order_status = models.CharField(
@@ -54,20 +55,11 @@ class incDelivery(models.Model):
     order_delivery_date = models.DateField(default=datetime.date.today,blank=True)
     order_delivery_amount = models.FloatField(null=True, blank=False, default=0.0)
     
+    def save(self, *args, **kwargs):
+        total_amount = self.order_amount
+        percentage = self.order_amount_minus_percentage
+        if total_amount > 0:
+            self.order_delivery_amount = total_amount-(total_amount*(percentage/100))
+            self.order_charges_for_fiverr = total_amount - self.order_delivery_amount
+        return super().save(*args, **kwargs)
 
-##    def save(self, *args, **kwargs):
-##        
-##        if name.endswith("S.L"):
-##            self.country = 'Company country'
-##            self.foundation_year = 'Company year'
-##            
-##        super().save(*args, **kwargs)
-
-    # remarks
-    # team_EmpName
-    # def is_amount(self):
-    #     zero = 0.0
-    #     if self.percentage is not zero:
-    #         return self.amount - (self.amount*(self.percentage/100))
-    #     else:
-    #         return self.amount

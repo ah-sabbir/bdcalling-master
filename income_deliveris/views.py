@@ -38,6 +38,7 @@ class income(APIView):
             return Response("sucess")
         print("errors: ",serialized_form_data.errors)
         return Response(serialized_form_data.errors)
+            
     def put(self, request):
         return HttpResponse("api put method")
     def delete(self, request):
