@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+import datetime
 
 class incDelivery(models.Model):
     class whoIncome(models.TextChoices):
@@ -23,36 +24,45 @@ class incDelivery(models.Model):
         ("Cancelled", "Cancelled"),
     )
 
-    incomingBy = models.CharField(
+    order_recieve_person = models.CharField(
         max_length = 2,
         choices=whoIncome.choices,
-        default= ""
+        default= "",
     )
-    date = models.DateTimeField('date_published', auto_now=True)
-    accountFiverr = models.CharField(max_length=20,blank=False)
-    amount = models.FloatField(null=True, blank=True, default=0.0)
-    percentage = models.FloatField(null=True, blank=True, default=0.0)
-    chargesFiverr = models.FloatField(null=True, blank=True, default=0.0)
-    fiverrId = models.CharField(max_length=50, blank=False)
-    clientName = models.CharField(max_length=20)
-    emailAddress = models.EmailField()
-    orderPageURL = models.URLField(blank=False)
-    spreadsheetLink = models.URLField(blank=False)
-    remarks = models.CharField(max_length=50,blank=True)
-    allocationTeamName = models.CharField(max_length=50,blank=True)
-    orderStatus = models.CharField(
+    order_recieve_date = models.DateTimeField('date_published', auto_now=True)
+    order_recieve_fiverr_account = models.CharField(max_length=20,blank=False)
+    order_amount = models.FloatField(null=True, blank=True, default=0.0)
+    order_amount_minus_percentage = models.FloatField(null=True, blank=True, default=0.0)
+    order_charges_for_fiverr = models.FloatField(null=True, blank=True, default=0.0)
+    client_fiverr_id = models.CharField(max_length=50, blank=False)
+    client_name = models.CharField(max_length=20)
+    client_email_address = models.EmailField()
+    order_page_url = models.URLField(blank=False)
+    order_spreadsheet_url = models.URLField(blank=False)
+    order_remarks = models.CharField(max_length=50,blank=True)
+    order_working_team_or_person_name = models.CharField(max_length=50,blank=True)
+    order_status = models.CharField(
         max_length=15,
         choices = order_status,
         default = ""
         )
-    deliveredBy = models.CharField(
+    order_delivery_person = models.CharField(
         max_length = 2,
         choices=whoIncome.choices,
         default= ""
     )
-    deliveredDate = models.DateField(auto_now=False, auto_now_add=False,null=True, blank = False)
-    deliveredAmount = models.FloatField(null=True, blank=False, default=0.0)
+    order_delivery_date = models.DateField(default=datetime.date.today,blank=True)
+    order_delivery_amount = models.FloatField(null=True, blank=False, default=0.0)
     
+
+##    def save(self, *args, **kwargs):
+##        
+##        if name.endswith("S.L"):
+##            self.country = 'Company country'
+##            self.foundation_year = 'Company year'
+##            
+##        super().save(*args, **kwargs)
+
     # remarks
     # team_EmpName
     # def is_amount(self):

@@ -23,16 +23,13 @@ class home(TemplateView):
     def get(self,request):
         return HttpResponse("hello django")
 
-
 class income(APIView):
     def get(self,request):
         if request.GET.get('getForm' or None) == 'True':
             return HttpResponse(entryForm())
-
         incomeReport = incDelivery.objects.all()
         serializer = incommingSerializer(incomeReport, many=True)
         return render(request,'index.html',context={"data":serializer.data,'form':entryForm()})
-        #return HttpResponse("incomming report show here")
     def post(self,request):
         serialized_form_data = entryForm(data = request.data)
         data = {}
