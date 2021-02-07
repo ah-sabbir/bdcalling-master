@@ -64,9 +64,12 @@ tr:nth-child(even) {
   {% endfor %}
 </table>
 
-
-{% for fields in form %}
+<form method='post'>
+{% comment %} {% for fields in form %}
 {{fields}}
-{% endfor %}
+{% endfor %} {% endcomment %}
+{{form.as_p}}
+<button type="submit" class="save btn btn-default">submit</button>
+</form>
 </body>
 </html>
