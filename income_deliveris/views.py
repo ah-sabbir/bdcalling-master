@@ -17,6 +17,9 @@ from income_deliveris.serializers import incommingSerializer
 from income_deliveris.models import incDelivery
 from income_deliveris.serializers import entryForm
 
+from django.shortcuts import redirect
+
+
 class home(TemplateView):
     def __init__(self, *args, **kwargs):
         self.template_name = ""
@@ -35,7 +38,7 @@ class income(APIView):
         data = {}
         if serialized_form_data.is_valid():
             instance = serialized_form_data.save()
-            return Response("sucess")
+            return redirect("incoming_report")
         print("errors: ",serialized_form_data.errors)
         return Response(serialized_form_data.errors)
             
