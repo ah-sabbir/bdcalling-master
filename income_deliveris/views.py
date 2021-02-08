@@ -26,7 +26,9 @@ class home(TemplateView):
     def get(self,request):
         return HttpResponse("hello django")
 
-class income(APIView):
+class income(TemplateView):
+    def __init__(self, *args, **kwargs):
+        self.template_name = ""
     def get(self,request):
         if request.GET.get('getForm' or None) == 'True':
             return HttpResponse(entryForm())
@@ -34,7 +36,7 @@ class income(APIView):
         serializer = incommingSerializer(incomeReport, many=True)
         return render(request,'index.html',context={"data":serializer.data,'form':entryForm()})
     def post(self,request):
-        serialized_form_data = entryForm(data = request.data)
+        serialized_form_data = entryForm(data = request.POST)
         data = {}
         if serialized_form_data.is_valid():
             instance = serialized_form_data.save()
