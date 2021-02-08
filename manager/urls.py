@@ -24,7 +24,7 @@ import rest_framework
 
 urlpatterns = [
     path('',include("income_deliveris.urls")),
-    path('api-auth/', include('rest_framework.urls')),
+    # path('api-auth/', include('rest_framework.urls')),
     path('admin/', admin.site.urls),
 ]
 
