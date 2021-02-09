@@ -24,6 +24,7 @@ import rest_framework
 
 urlpatterns = [
     path('',include("income_deliveris.urls")),
+    path('dashboard', include('dashboard.urls')),
     # path('api-auth/', include('rest_framework.urls')),
     path('admin/', admin.site.urls),
 ]

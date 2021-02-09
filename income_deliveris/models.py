@@ -24,13 +24,20 @@ class incDelivery(models.Model):
         ("Cancelled", "Cancelled"),
     )
 
+    marketplaces = (
+        ('Fiverr','Fiverr'),
+        ('Upwork','Upwork'),
+        ('PeoplePerHour','PeoplePerHour'),
+        ('Others','Others'),
+    )
+
     order_recieve_person = models.CharField(
         max_length = 2,
         choices=whoIncome.choices,
         default= "",
     )
     order_recieve_date = models.DateTimeField('date_published', auto_now=True)
-    marketplacename = models.CharField(max_length=100,blank=False)
+    marketplacename = models.CharField(max_length=100,choices = marketplaces, default = "")
     order_recieve_fiverr_account = models.CharField(max_length=20,blank=False)
     order_amount = models.FloatField(null=True, blank=False, default=0.0)
     order_amount_minus_percentage = models.FloatField(null=True, blank=True, default=20.00)

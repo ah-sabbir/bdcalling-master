@@ -25,6 +25,7 @@ tr:nth-child(even) {
 
 <table>
 <tr>
+    <th>Row id</th>
     <th><p>Income By</p></th>
     <th>Order Date</th>
     <th>Mrketplace Name</th>
@@ -47,6 +48,7 @@ tr:nth-child(even) {
   </tr>
 {% for row in data %}
   <tr>
+    <td>{{row.id}}</td>
     <td>{{row.order_recieve_person}}</td>
     <td>{{row.order_recieve_date}}</td>
     <td>{{row.marketplacename}}</td>
@@ -80,5 +82,17 @@ tr:nth-child(even) {
     {% endfor %}
     <p><input type="submit" value="Send message" /></p>
 </form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('#id_marketplacename').change(function () {
+        var selectedItem = $(this).val();
+        if (selectedItem === 'Others') {
+            var answer = prompt("From where you got this order ? ");
+        }
+    });
+});
+</script>
 </body>
 </html>
