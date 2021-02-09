@@ -41,8 +41,7 @@ class income(TemplateView):
         if serialized_form_data.is_valid():
             instance = serialized_form_data.save()
             return redirect("incoming_report", permanent= True)
-        print("errors: ",serialized_form_data.errors)
-        return Response(serialized_form_data.errors)
+        return HttpResponse("something form error please fill up again perfactely")
     def put(self, request):
         return HttpResponse("api put method")
     def delete(self, request):
