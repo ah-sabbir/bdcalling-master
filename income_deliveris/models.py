@@ -66,7 +66,7 @@ class incDelivery(models.Model):
         total_amount = self.order_amount
         percentage = self.order_amount_minus_percentage
         if total_amount > 0:
-            self.order_delivery_amount = total_amount-(total_amount*(percentage/100))
-            self.order_charges_for_fiverr = total_amount - self.order_delivery_amount
+            self.order_delivery_amount = round(total_amount-(total_amount*(percentage/100)),2)
+            self.order_charges_for_fiverr = round(total_amount - self.order_delivery_amount,2)
         super().save(*args, **kwargs)
 
