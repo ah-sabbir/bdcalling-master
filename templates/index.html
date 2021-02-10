@@ -64,7 +64,7 @@ tr:nth-child(even) {
     <td>{{row.order_spreadsheet_url}}</td>
     <td>{{row.order_remarks}}</td>
     <td>{{row.order_working_team_or_person_name}}</td>
-    <td>{{row.order_status}}</td>
+    <td>{{row.order_status}}<!-- <input type="text" /> --></td>
     <td>{{row.order_delivery_person}}</td>
     <td>{{row.order_delivery_date}}</td>
     <td>{{row.order_delivery_amount}}</td>
@@ -82,7 +82,7 @@ tr:nth-child(even) {
     {% endfor %}
     <p><input type="submit" value="Send message" /></p>
 </form>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.23.0/c3_renderers.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
@@ -90,9 +90,14 @@ $(document).ready(function(){
         var selectedItem = $(this).val();
         if (selectedItem === 'Others') {
             var answer = prompt("From where you got this order ? ");
+            $('option[value=Others]').val(answer);
+            $('select option:contains("Others")').text(answer);
         }
     });
 });
 </script>
+
 </body>
 </html>
+
+

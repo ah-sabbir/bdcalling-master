@@ -32,6 +32,7 @@ class income(TemplateView):
     def get(self,request):
         if request.GET.get('getForm' or None) == 'True':
             return HttpResponse(entryForm())
+        # print("form errors ",[error for error in incommingSerializer.errors])
         incomeReport = incDelivery.objects.all()
         serializer = incommingSerializer(incomeReport, many=True)
         return render(request,'index.html',context={"data":serializer.data,'form':entryForm()})
@@ -40,8 +41,11 @@ class income(TemplateView):
         data = {}
         if serialized_form_data.is_valid():
             instance = serialized_form_data.save()
-            return redirect("incoming_report", permanent= True)
-        return HttpResponse("something form error please fill up again perfactely")
+            return redirect("incoming_report")
+        print("forms errors : ", [error for error in serialized_form_data.errors])
+        incomeReport = incDelivery.objects.all()
+        serializer = incommingSerializer(incomeReport, many=True)
+        return render(request,'index.html',context={"data":serializer.data,'form':entryForm()})
     def put(self, request):
         return HttpResponse("api put method")
     def delete(self, request):
