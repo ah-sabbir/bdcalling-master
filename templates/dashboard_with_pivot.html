@@ -11,7 +11,7 @@
 <body>
     <div id="wdr-component"></div>
     <script>
-    $.getJSON(location.pathname+'/pivot-table',function(data){
+    $.getJSON(location.pathname+'pivot-table',function(data){
             var fields = []
             var loop = JSON.parse(data).map(function(e){
                 //console.log(e['fields'].order_delivery_date);
