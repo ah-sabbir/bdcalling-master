@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'income_deliveris.apps.IncomeDeliverisConfig',
     'dashboard.apps.DashboardConfig',
     'rest_framework',
+    'Employee.apps.EmployeeConfig',
 ]
 
 MIDDLEWARE = [

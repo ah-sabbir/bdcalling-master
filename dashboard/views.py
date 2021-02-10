@@ -44,7 +44,7 @@ def ptable(request):
     dataset = incDelivery.objects.all()
     data = serializers.serialize('json',dataset)
 
-    print(data)
+    #print(data)
 
     #print(data)
     return JsonResponse(data,safe=False)
