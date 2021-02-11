@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'dashboard.apps.DashboardConfig',
     'rest_framework',
     'Employee.apps.EmployeeConfig',
+    'orders.apps.OrdersConfig',
 ]
 
 MIDDLEWARE = [

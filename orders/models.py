@@ -1,0 +1,122 @@
+from django.db import models
+from Employee.models import clientManagement
+from django.utils.translation import gettext_lazy as _
+import datetime
+# Create your models here.
+MARKET_PLACES = [
+    'Fiverr',
+    'Upwork',
+    'PeoplePerHour',
+    'Others',
+    ]
+ORDER_STATUS = [
+    "NRA",
+    "WIP",
+    "NE",
+    "Completed",
+    "Delivered",
+    "Revision",
+    "Issues",
+    "Cancelled",
+    ]
+
+class order(models.Model):
+    receive = models.ForeignKey("Employee.clientManagement",on_delete=models.CASCADE,related_name="order_receive")
+    receive_date = models.DateTimeField(auto_now=True)
+    # marketplaces = models.CharField(max_length=100,choices=[(x,x) for x in MARKET_PLACES],default = "")
+    received_account = models.CharField(max_length=100)
+    received_amount = models.FloatField(default=0.0)
+    percentage = models.FloatField(default=20.00)
+    market_place_charges = models.FloatField(default=0.0)
+    client_id = models.CharField(max_length=100)
+    client_email = models.EmailField()
+    order_page_url = models.URLField(blank=False)
+    SpreadSheet = models.URLField(blank=True)
+    remarks = models.CharField(max_length=100)
+    # order_status = marketplaces = models.CharField(max_length=100,choices=[(x,x) for x in ORDER_STATUS],default = "")
+
+
+
+
+
+
+##############################################################################
+
+# from django.db import models
+# from django.utils.translation import gettext_lazy as _
+# import datetime
+# from Employee.models import Employees
+# class incDelivery(models.Model):
+#     class whoIncome(models.TextChoices):
+#         shamim = "SM",_('Shamim Osman')
+#         sharif = "SF", _('Shariful Islam')
+#         mamun = "MN", _('Mamunur Rashid')
+#         tuhin = "TN", _('Tuhin Hossain')
+#         jabed = "JD", _('Jabed')
+#         amirul = "AL", _('Amirul Sohan')
+#         mehedi = "MI", _('Mehedi Hasan Moni')
+#         rony = "RY", _('Rony Hossen')
+
+#     order_status = (
+#         ("NRA","NRA"),
+#         ("WIP", "WIP"),
+#         ("NE", "NE"),
+#         ("Completed", "Completed"),
+#         ("Delivered", "Delivered"),
+#         ("Revision", "Revision"),
+#         ("Issues", "Issues"),
+#         ("Cancelled", "Cancelled"),
+#     )
+
+#     marketplaces = (
+#         ('Fiverr','Fiverr'),
+#         ('Upwork','Upwork'),
+#         ('PeoplePerHour','PeoplePerHour'),
+#         ('Others','Others'),
+#     )
+
+#     order_recieve_person = models.CharField(
+#         max_length = 2,
+#         choices=whoIncome.choices,
+#         default= "",
+#     )
+#     order_recieve_date = models.DateTimeField('date_published', auto_now=True)
+#     marketplacename = models.CharField(max_length=100,choices = marketplaces, default = "")
+#     order_recieve_fiverr_account = models.CharField(max_length=20,blank=False)
+#     order_amount = models.FloatField(null=True, blank=False, default=0.0)
+#     order_amount_minus_percentage = models.FloatField(null=True, blank=True, default=20.00)
+#     order_charges_for_fiverr = models.FloatField(null=True, blank=True, default=0.0)
+#     client_fiverr_id = models.CharField(max_length=50, blank=False)
+#     client_fiverr_profile = models.CharField(max_length=200,blank=False)
+#     client_email_address = models.EmailField(blank = True)
+#     order_page_url = models.URLField(blank=False)
+#     order_spreadsheet_url = models.URLField(blank=True)
+#     order_remarks = models.CharField(max_length=50,blank=True)
+#     order_working_team_or_person_name = models.CharField(max_length=50,blank=True)
+#     order_status = models.CharField(
+#         max_length=15,
+#         choices = order_status,
+#         default = ""
+#         )
+#     order_delivery_person = models.CharField(
+#         max_length = 2,
+#         choices=whoIncome.choices,
+#         default= ""
+#     )
+#     order_delivery_date = models.DateField(default=datetime.date.today,blank=True)
+#     order_delivery_amount = models.FloatField(null=True, blank=False, default=0.0)
+#     employee = models.ForeignKey(Employees,on_delete=models.CASCADE, related_name="contact")
+    
+#     def save(self, *args, **kwargs):
+#         total_amount = self.order_amount
+#         percentage = self.order_amount_minus_percentage
+#         if total_amount > 0:
+#             self.order_delivery_amount = round(total_amount-(total_amount*(percentage/100)),2)
+#             self.order_charges_for_fiverr = round(total_amount - self.order_delivery_amount,2)
+#         super().save(*args, **kwargs)
+
+
+
+
+
+

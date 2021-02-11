@@ -1,5 +1,4 @@
 from django.db import models
-
 # Create your models here.
 
 class clientManagement(models.Model):
@@ -9,6 +8,14 @@ class clientManagement(models.Model):
     
     def __str__(self):
         return '{0}'.format(self.name)
+    
+    # def save(self, *args, **kwargs):
+    #     total_amount = order.object.all()
+    #     percentage = self.order_amount_minus_percentage
+    #     if total_amount > 0:
+    #         self.order_delivery_amount = round(total_amount-(total_amount*(percentage/100)),2)
+    #         self.order_charges_for_fiverr = round(total_amount - self.order_delivery_amount,2)
+    #     super().save(*args, **kwargs)
 
 attendance_choices = (
     ('absent', 'Absent'),
@@ -20,7 +27,6 @@ class Employees(models.Model):
     email = models.EmailField()
     phone = models.IntegerField(unique=True)
     emp_id = models.IntegerField(unique=True)
-    revenue = models.FloatField()
 
     def __str__(self):
         return self.name
