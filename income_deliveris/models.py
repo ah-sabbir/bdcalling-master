@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 import datetime
-
+from Employee.models import Employees
 class incDelivery(models.Model):
     class whoIncome(models.TextChoices):
         shamim = "SM",_('Shamim Osman')
@@ -61,6 +61,7 @@ class incDelivery(models.Model):
     )
     order_delivery_date = models.DateField(default=datetime.date.today,blank=True)
     order_delivery_amount = models.FloatField(null=True, blank=False, default=0.0)
+    employee = models.ForeignKey(Employees,on_delete=models.CASCADE, related_name="contact")
     
     def save(self, *args, **kwargs):
         total_amount = self.order_amount

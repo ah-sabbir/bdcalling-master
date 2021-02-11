@@ -34,8 +34,8 @@ tr:nth-child(even) {
     <th>Percentage</th>
     <th>Fiverr Charge</th>
     <th>Client's Fiverr Id</th>
-    <th>Client Fiverr Profile</th>
-    <th>Client Name</th>
+    {% comment %} <th>Client Fiverr Profile</th>
+    <th>Client Name</th> {% endcomment %}
     <th>Client Email</th>
     <th>Order Page Url</th>
     <th>Spreadsheet Url</th>
@@ -55,10 +55,10 @@ tr:nth-child(even) {
     <td>{{row.order_recieve_fiverr_account}}</td>
     <td>{{row.order_amount}}</td>
     <td>{{row.order_amount_minus_percentage}}</td>
-    <td>{{row.order_charges_for_fiverr}}</td>
+    <td>{{row.order_charges_for_fiverr |floatformat:2}}</td>
     <td>{{row.client_fiverr_id}}</td>
-    <td>{{row.client_fiverr_profile}}</td>
-    <td>{{row.client_name}}</td>
+    {% comment %} <td>{{row.client_fiverr_profile}}</td>
+    <td>{{row.client_name}}</td> {% endcomment %}
     <td>{{row.client_email_address}}</td>
     <td>{{row.order_page_url}}</td>
     <td>{{row.order_spreadsheet_url}}</td>
